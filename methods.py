@@ -55,9 +55,9 @@ def check_branch(connection,repository_name,project_id,branch):
       found=True
   return found
 
-# Method to update the gradle.properties file in newly created branch.
+# Method to update the file in newly created branch with version as new version
 def update_properties_file(connection,repository_name,project,branch,version):
-  file_name='gradle.properties'
+  file_name='file_name.txt'
   files_list=get_all_files(connection,project,branch,file_name)
   for file in files_list:
     try:
