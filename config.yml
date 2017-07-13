@@ -1,0 +1,5 @@
+---
+gitlab_url: http://gitlab_host_name/ip
+gitlab_email: email
+gitlab_password: password
+gitlab_repos_file: repositories.yml
