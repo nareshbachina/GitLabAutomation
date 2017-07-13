@@ -56,7 +56,7 @@ def check_branch(connection,repository_name,project_id,branch):
   return found
 
 # Method to update the gradle.properties file in newly created branch.
-def update_properties_file(connection,repository_name,project,branch,version,foundation_version,commons_version,zetahub_version):
+def update_properties_file(connection,repository_name,project,branch,version):
   file_name='gradle.properties'
   files_list=get_all_files(connection,project,branch,file_name)
   for file in files_list:
@@ -67,12 +67,6 @@ def update_properties_file(connection,repository_name,project,branch,version,fou
       for i in range(len(old_data)):
         if old_data[i].startswith('version=') and version and version!="None":
           old_data[i]="version=\""+version+"-SNAPSHOT\""
-        if old_data[i].startswith('foundationVersion=') and foundation_version and foundation_version!="None":
-          old_data[i]="foundationVersion=\""+foundation_version+"-SNAPSHOT\""
-        if old_data[i].startswith('commonsVersion=') and commons_version and commons_version!="None":
-          old_data[i]="commonsVersion=\""+commons_version+"-SNAPSHOT\""
-        if old_data[i].startswith('zetahubVersion=') and zetahub_version and zetahub_version!="None":
-          old_data[i]="zetahubVersion=\""+zetahub_version+"-SNAPSHOT\""
       new_data='\n'.join(old_data)
       content=base64.b64encode(new_data)
       f.content=content
